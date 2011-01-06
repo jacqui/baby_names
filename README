@@ -1,0 +1,16 @@
+== Baby Names API
+
+This application provides an API to the baby names database - data on
+popularity of names by gender, year, and ethnicity for NYC. 
+
+Full documentation can be found at http://localhost:3000/docs
+
+
+== Getting Started
+
+1. gem install -v=2.3.5 rails, gem install mysql
+2. rake gems:install
+3. rake db:create db:migrate
+4. rake populate:names
+5. ./script/server
+6. http://localhost:3000/docs

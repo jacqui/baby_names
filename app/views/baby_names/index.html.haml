@@ -1,0 +1,27 @@
+%h1 Baby Names
+
+%p
+  = page_entries_info(@baby_names)
+- paginated_section(@baby_names) do
+  %table{:id => 'baby_names'}
+    %thead
+      %tr
+        %th{:scope => 'col'} Name
+        %th{:scope => 'col'} Gender
+        %th{:scope => 'col'} Year
+        %th{:scope => 'col'} Total Count
+        %th{:scope => 'col'} Total Rank
+        %th{:scope => 'col'} Hispanic Count
+        %th{:scope => 'col'} Hispanic Rank
+        %th{:scope => 'col'} Black (Non Hispanic) Count
+        %th{:scope => 'col'} Black (Non Hispanic) Rank
+        %th{:scope => 'col'} White (Non Hispanic) Count
+        %th{:scope => 'col'} White (Non Hispanic) Rank
+        %th{:scope => 'col'} Asian Count
+        %th{:scope => 'col'} Asian Rank
+        %th{:scope => 'col'} Unknown Count
+        %th{:scope => 'col'} Unknown Rank
+    %tbody
+      - @baby_names.each do |name|
+        = render :partial => 'baby_name', :object => name
+

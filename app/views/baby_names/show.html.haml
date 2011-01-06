@@ -1,0 +1,28 @@
+%dl
+  %dt Name
+  %dd= h @baby_name.name
+  %dt Gender
+  %dd= h @baby_name.gender
+  %dt Year
+  %dd= h @baby_name.year
+  %dt Hispanic count
+  %dd= h @baby_name.hispanic_count
+  %dt Hispanic rank
+  %dd= h @baby_name.hispanic_rank
+  %dt White count
+  %dd= h @baby_name.white_count
+  %dt White rank
+  %dd= h @baby_name.white_rank
+  %dt Black count
+  %dd= h @baby_name.black_count
+  %dt Black rank
+  %dd= h @baby_name.black_rank
+  %dt Unknown count
+  %dd= h @baby_name.unknown_count
+  %dt Unknown rank
+  %dd= h @baby_name.unknown_rank
+
+%p
+  = link_to 'Edit', edit_baby_name_path(@baby_name)
+  |
+  = link_to 'Back', baby_names_path

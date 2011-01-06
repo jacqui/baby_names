@@ -1,0 +1,9 @@
+%h1 Editing Baby name
+
+- form_for(@baby_name) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  %p= form.submit 'Update'
+
+%p
+  = link_to 'Show', @baby_name
+  = link_to 'Back', baby_names_path

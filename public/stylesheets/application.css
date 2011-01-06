@@ -1,0 +1,47 @@
+body {
+  background-color: #E8DDCB;
+  color: #033649;
+}
+
+a {
+  text-decoration: none;
+  color: #031634;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #036564;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Tables */
+table#baby_names {
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  border-collapse:collapse;
+  font-family:"Lucida Sans Unicode","Lucida Grande",Sans-Serif;
+  font-size:12px;
+  margin:20px;
+  text-align:left;
+  width:480px;
+}
+table#baby_names th {
+  background: none;
+  border-bottom:2px solid #6678B1;
+  color:#003399;
+  font-size:14px;
+  font-weight:normal;
+  padding:10px 8px;
+}
+table#baby_names td {
+  color:#666699;
+  padding:9px 8px 0;
+}
+table#baby_names tbody tr:hover td {
+  color:#000099;
+}
+

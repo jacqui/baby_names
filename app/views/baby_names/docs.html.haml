@@ -1,0 +1,260 @@
+%h1 Baby Names API
+
+%p
+  The Baby Names application returns its data, and subsets of data, through its RESTful API. This documentation shows you how.
+
+%h2 Search Method
+%p
+  returns baby names matching a specified criteria.
+%p
+  %b URL
+  %br/
+  %code http://newsdev.ec2.nytimes.com/baby-names/
+
+%p
+  %b Formats
+  %br/
+  %code HTML, XML
+
+%p
+  %b Parameters
+  %dl
+    %dt sections
+    %dd= link_to "pagination", docs_path(:anchor => 'pagination')
+    %dd= link_to "popularity", docs_path(:anchor => 'popularity')
+    %dd= link_to "name", docs_path(:anchor => 'name')
+    %dd= link_to "gender", docs_path(:anchor => 'gender')
+    %dd= link_to "counts", docs_path(:anchor => 'count')
+    %dd= link_to "ranks", docs_path(:anchor => 'rank')
+    %dd= link_to "hispanic ethnicity", docs_path(:anchor => 'hispanic')
+    %dd= link_to "black ethnicity", docs_path(:anchor => 'black')
+    %dd= link_to "white ethnicity", docs_path(:anchor => 'white')
+    %dd= link_to "asian ethnicity", docs_path(:anchor => 'asian')
+    %dd= link_to "unknown ethnicity", docs_path(:anchor => 'unknown')
+  %ul
+    %a{:name => 'pagination'}
+    %li
+      pagination: all requests support paginated results
+      %ul
+        %li.options
+          %span page: the current page of results to display. defaults to 1.
+        %li.options
+          %span per_page: the number of results to display per page. defaults to 10.
+        %li.example
+          %span example:
+          = link_to root_url(:most_popular => true, :per_page => 5, :page => 1 ), root_url(:most_popular => true, :per_page => 5, :page => 1 )
+        %li.example
+          %span example:
+          = link_to root_url(:most_popular => true, :per_page => 50, :page => 2 ), root_url(:most_popular => true, :per_page => 50, :page => 2 )
+    %li
+      avoiding pagination: all requests support returning all results.
+      %ul
+        %li.options
+          %span all: set this parameter to true to return all results
+        %li.example
+          %span example:
+          = link_to root_url(:most_popular => true, :all => true ), root_url(:most_popular => true, :all => true )
+        %li.example
+          %span example:
+          = link_to "All female names from 1930 ordered by rank, ascending", root_url(:all=>true, :gender_equals=> 'female', :year=> '1930', :ordered_by_total_rank=> 'ASC')
+        %li.example
+          %span example:
+          = link_to "All male names from 1950 ordered by count, descending", root_url(:all=>true, :gender_equals=> 'male', :year=> '1950', :ordered_by_total_count => 'DESC')
+  %hr/
+  %ul
+    %a{:name => 'popularity'}
+    %li
+      most_popular: returns the most popular names for all years, genders, and ethnicities
+      %ul
+        %li.options
+          %span options: limit to return. defaults to 10
+        %li.example
+          %span example:
+          = link_to root_url(:most_popular => true, :limit => 10 ), root_url(:most_popular => true, :limit => 10 )
+    %li
+      most_popular_by_gender: returns the most popular names for all years and ethnicities for a given gender
+      %ul
+        %li.options
+          %span options: gender [female, male]
+        %li.options
+          %span options: limit to return. defaults to 10
+        %li.example
+          %span example:
+          = link_to root_url(:most_popular_by_gender => 'female', :limit => 10  ), root_url(:most_popular_by_gender => 'female', :limit => 10 )
+    %li
+      most_popular_by_ethnicity: returns the most popular names for all years and ethnicities for a given gender
+      %ul
+        %li.options
+          %span options: ethnicity [black, white, asian, hispanic, unknown]
+        %li.options
+          %span options: limit to return. defaults to 10
+        %li.example
+          %span example:
+          = link_to root_url(:most_popular_by_ethnicity => 'asian', :limit => 10  ), root_url(:most_popular_by_ethnicity => 'asian', :limit => 10 )
+  %hr/
+  %ul
+    %a{:name => 'name'}
+    %li
+      name_equals: returns names matching the string exactly.
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:name_equals => 'Stephanie' ), root_url(:name_equals => 'Stephanie' )
+    %li
+      name_does_not_equal
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:name_does_not_equal => 'Stephanie' ), root_url(:name_does_not_equal => 'Stephanie' )
+    %li
+      name_begins_with
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:name_begins_with => 'Steph' ), root_url(:name_begins_with => 'Steph' )
+    %li
+      name_not_begin_with
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:name_not_begin_with => 'Stephanie' ), root_url(:name_not_begin_with => 'Stephanie' )
+    %li
+      name_like
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:name_like => 'eph' ), root_url(:name_like => 'eph' )
+    %li
+      name_not_like
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:name_not_like => 'anie' ), root_url(:name_not_like => 'anie' )
+    %li
+      name_ends_with
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:name_ends_with => 'ie' ), root_url(:name_ends_with => 'ie' )
+    %li
+      name_not_end_with
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:name_not_end_with => 'ie' ), root_url(:name_not_end_with => 'ie' )
+  %hr/
+  %ul
+    %a{:name => 'gender'}
+    %li
+      gender_equals: returns names matching the gender exactly.
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:gender_equals => 'female' ), root_url(:gender_equals => 'female' )
+    %li
+      gender_does_not_equal: returns names not matching the gender exactly.
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:gender_does_not_equal => 'male' ), root_url(:gender_does_not_equal => 'male' )
+  %hr/
+  %ul
+    %a{:name => 'year'}
+    = example_for("year_equals", 1990)
+    = example_for("year_greater_than", 1990)
+    = example_for("year_greater_than_or_equal_to", 1990)
+    = example_for("year_less_than", 1990)
+    = example_for("year_less_than_or_equal_to", 1990)
+    = example_for("year_greater_than", 1990)
+    = example_for("year_greater_than_or_equal_to", 1990)
+    = example_for("year_less_than", 1990)
+    = example_for("year_less_than_or_equal_to", 1990)
+  %hr/
+  %ul
+    %a{:name => 'count'}
+    %li
+      total_count_equals
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:total_count_equals => 1 ), root_url(:total_count_equals => 1 )
+    %li
+      total_count_does_not_equal
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:total_count_does_not_equal => 1 ), root_url(:total_count_does_not_equal => 1 )
+    %li
+      total_count_greater_than_or_equal_to
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:total_count_greater_than_or_equal_to => 1 ), root_url(:total_count_greater_than_or_equal_to => 1 )
+    %li
+      total_count_less_than
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:total_count_less_than => 1 ), root_url(:total_count_less_than => 1 )
+    %li
+      total_count_less_than_or_equal_to
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:total_count_less_than_or_equal_to => 1 ), root_url(:total_count_less_than_or_equal_to => 1 )
+    %li
+      total_count_greater_than
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:total_count_greater_than => 1 ), root_url(:total_count_greater_than => 1 )
+    %li
+      total_count_greater_than_or_equal_to
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:total_count_greater_than_or_equal_to => 1 ), root_url(:total_count_greater_than_or_equal_to => 1 )
+    %li
+      total_count_less_than
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:total_count_less_than => 'Stephanie' ), root_url(:total_count_less_than => 'Stephanie' )
+
+    %li
+      total_count_less_than_or_equal_to
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:total_count_less_than_or_equal_to => 'Stephanie' ), root_url(:total_count_less_than_or_equal_to => 'Stephanie' )
+  %hr/
+  %ul
+    %a{:name => 'rank'}
+    %li total_rank_greater_than
+    %li total_rank_greater_than_or_equal_to
+    %li total_rank_less_than
+    %li total_rank_less_than_or_equal_to
+  %hr/
+  %ul
+    %a{:name => 'limit'}
+    %li
+      limit: limit the total result set to X number of records. compatible with :pagination: and :all:.
+      %ul
+        %li
+          %span example:
+          = link_to root_url(:limit => 100), root_url(:limit => 100)
+          %span example with pagination:
+          = link_to root_url(:limit => 100, :page => 1, :per_page => 10), root_url(:limit => 100, :page => 1, :per_page => 10)
+  - BabyName::INCLUDED_ETHNICITIES.each do |ethnicity|
+    %hr/
+    %ul
+      %a{:name => ethnicity}
+      = example_for("#{ethnicity}_count_equals", 100)
+      = example_for("#{ethnicity}_count_greater_than", 100)
+      = example_for("#{ethnicity}_count_greater_than_or_equal_to", 100)
+      = example_for("#{ethnicity}_count_less_than", 100)
+      = example_for("#{ethnicity}_count_less_than_or_equal_to", 100)
+      = example_for("#{ethnicity}_rank_greater_than", 100)
+      = example_for("#{ethnicity}_rank_greater_than_or_equal_to", 100)
+      = example_for("#{ethnicity}_rank_less_than", 100)
+      = example_for("#{ethnicity}_rank_less_than_or_equal_to", 100)

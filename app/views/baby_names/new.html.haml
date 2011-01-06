@@ -1,0 +1,7 @@
+%h1 New Baby name
+
+- form_for(@baby_name) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  %p= form.submit "Create"
+
+%p= link_to 'Back', baby_names_path
